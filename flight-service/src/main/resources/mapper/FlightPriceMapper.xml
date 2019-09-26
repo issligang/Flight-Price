@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.haina.flight.price.dao.FlightPriceMapper">
+  <resultMap id="BaseResultMap" type="com.haina.flight.price.model.FlightPrice">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="origin" jdbcType="VARCHAR" property="origin" />
+    <result column="dest" jdbcType="VARCHAR" property="dest" />
+    <result column="baggage" jdbcType="VARCHAR" property="baggage" />
+    <result column="rule" jdbcType="VARCHAR" property="rule" />
+    <result column="depart_date" jdbcType="VARCHAR" property="departDate" />
+    <result column="depart_time" jdbcType="VARCHAR" property="departTime" />
+    <result column="arrival_date" jdbcType="VARCHAR" property="arrivalDate" />
+    <result column="arrival_time" jdbcType="VARCHAR" property="arrivalTime" />
+    <result column="carrier" jdbcType="VARCHAR" property="carrier" />
+    <result column="flight_no" jdbcType="VARCHAR" property="flightNo" />
+    <result column="aircraft" jdbcType="VARCHAR" property="aircraft" />
+    <result column="act_flight_no" jdbcType="VARCHAR" property="actFlightNo" />
+    <result column="act_carrier" jdbcType="VARCHAR" property="actCarrier" />
+    <result column="price" jdbcType="INTEGER" property="price" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, origin, dest, baggage, rule, depart_date, depart_time, arrival_date, arrival_time, 
+    carrier, flight_no, aircraft, act_flight_no, act_carrier, price, create_time, update_time
+  </sql>
+
+  <select id="selectByODAndDepartDate" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from flight_price
+    where origin=#{origin} and dest = #{dest} and depart_date = #{departDate}
+  </select>
+
+</mapper>
